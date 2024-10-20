@@ -261,7 +261,7 @@ if st.session_state['current_conversation'] is not None:
         with st.chat_message(message[0]):
             st.markdown(message[1])
 
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("Ask me a question."):
     if st.session_state['current_conversation'] is None:
         # Create a new conversation
         new_id = create_new_conversation(conn, "Unnamed Conversation", selected_model)
