@@ -10,3 +10,8 @@ Mehdi-Bot is a conversational AI application built using Streamlit, OpenAI, and 
 - **Model Selection**: Choose from multiple AI models for diverse response styles and capabilities.
 - **Real-Time Interaction**: Get instant responses as you chat with the bot.
 - **Easy Deployment**: The application is containerized using Docker, making it easy to run and deploy.
+
+## Upcoming
+
+- [ ] New LLMs (Gemini API, Llama API, Deepseek API, ...)
+- [ ] Authentication & Custom API Keys
