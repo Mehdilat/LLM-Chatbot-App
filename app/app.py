@@ -5,6 +5,12 @@ import streamlit as st
 import sqlite3
 from datetime import datetime, timedelta
 
+openai_client = openai
+openai_client.api_key = os.getenv("OPENAI_API_KEY")
+
+anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+anthropic_client = anthropic.Anthropic(api_key=anthropic_api_key)
+
 # Database setup
 def init_db():
     conn = sqlite3.connect('conversations.db')
@@ -282,7 +288,7 @@ if prompt := st.chat_input("What is up?"):
 
         # Generate response using the conversation's model
         if conversation_model.startswith("gpt"):
-            stream = openai.chat.completions.create(
+            stream = openai_client.chat.completions.create(
                 model=conversation_model,
                 messages=[{"role": m[0], "content": m[1]} for m in get_messages(conn, conversation_id) + [("user", prompt)]],
                 stream=True,
@@ -294,7 +300,7 @@ if prompt := st.chat_input("What is up?"):
             response_placeholder.markdown(response)
 
         elif selected_model.startswith("claude"):
-            with anthropic.Anthropic().messages.stream(
+            with anthropic_client.messages.stream(
                 max_tokens=1024,
                 messages=[{"role": m[0], "content": m[1]} for m in get_messages(conn, conversation_id) + [("user", prompt)]],
                 model=selected_model,
