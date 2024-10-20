@@ -175,11 +175,11 @@ with st.sidebar:
     else:
         # Allow model selection for empty or new conversations
         selected_model = st.radio(
-            "Choose a model:",
-            options=model_options,
-            format_func=safe_get_model_name,
-            key="model_selection",
-            index=model_options.index(current_model) if current_model in model_options else 0
+            label = " ",
+            options = model_options,
+            format_func = safe_get_model_name,
+            key = "model_selection",
+            index = model_options.index(current_model) if current_model in model_options else 0
         )
 
         if current_model and selected_model != current_model:
